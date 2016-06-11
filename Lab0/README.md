@@ -29,7 +29,7 @@ The Raspberry Pi uses the ARM11 microarchitecture and supports the ARMv6 instruc
 In this course we will focus mainly on the ARMv6 Instruction Set.
 
 ###### Who else uses this?
-ARM is one of the most popular instruction set architectures out there. Some popular products use the same instruction set as the one you are about to learn. Examples of this are the Nintendo 3DS, the iPhone 3G, and some low-end Android phones. The newer instruction set architectures such as ARMv7 and ARMv8 and backwards compatible so most of what you will be learning will still be applicable to newer microarchitectures.
+ARM is one of the most popular instruction set architectures out there. Some popular products use the same instruction set as the one you are about to learn. Examples of this are the Nintendo 3DS, the iPhone 3G, and some low-end Android phones. The newer instruction set architectures such as ARMv7 and ARMv8 are backwards compatible so most of what you will be learning will still be applicable to newer microarchitectures.
 
 ###### Objectives
 * To get familiar with the Raspberry Pi
