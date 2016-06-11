@@ -221,7 +221,6 @@ The following review questions must be answered in your lab report. It is expect
    * **MOV**: Mnemonic that stands for move. Moves an immediate value or constant to a register. It can also copy the contents of a register to another.
       *  Example:
          * MOV R1, #32
-
    * **ADD**
    * **SUB**
    * **MUL**
