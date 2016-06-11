@@ -1,6 +1,23 @@
 ## Computer Architecture
 ###Lab 0: Setting up - Introduction to ARM
 
+  - [Overview](#overview)
+      - [ARM and Instruction Sets](#arm-and-instruction-sets)
+      - [Who else uses this?](#who-else-uses-this)
+      - [Objectives](#objectives)
+  - [Preparing the Pi](#preparing-the-pi)
+  - [Machine Code](#machine-code)
+  - [Assembly Instructions](#assembly-instructions)
+  - [Your first ARM Assembly program](#your-first-arm-assembly-program)
+      - [Transferring the source code to the Pi](#transferring-the-source-code-to-the-pi)
+      - [Producing an executable](#producing-an-executable)
+      - [Running the executable](#running-the-executable)
+  - [More on ARM: Registers](#more-on-arm-registers)
+  - [On your own](#on-your-own)
+      - [Program #1: lab0a.s](#program-1-lab0as)
+      - [Program #2: lab0b.s](#program-2-lab0bs)
+  - [Review Questions](#review-questions)
+
 #### Overview
 In this lab you will set up the Raspberry Pi and prepare the environment you are going to be using to develop for an ARM processor.
 
