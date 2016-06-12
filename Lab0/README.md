@@ -60,7 +60,7 @@ pwd
 We will now download the configuration script. The script will be downloaded to the working directory using `wget`, a utility for downloading network data.
 
 ```bash
-wget <URL of the script>
+wget https://raw.githubusercontent.com/xaviermerino/ECE4551-Computer-Architecture/master/Lab0/hostnameScript.sh
 ```
 
 We must ensure that the `bash` script that you just downloaded is executable by altering the executable flag with `chmod`. We will then proceed to run the script with the hostname assigned to you.
