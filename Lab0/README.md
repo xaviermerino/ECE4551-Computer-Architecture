@@ -67,7 +67,7 @@ We must ensure that the `bash` script that you just downloaded is executable by 
 
 ```bash
 chmod u+x ./hostnameScript.sh
-./hostnameScript.sh -n <assignedHostname>
+sudo ./hostnameScript.sh -n <assignedHostname>
 ```
 
 The script will set the new hostname and reboot the Pi. Once the Pi is done rebooting you will `ssh` into it like this:
