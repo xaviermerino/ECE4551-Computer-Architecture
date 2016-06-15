@@ -23,15 +23,15 @@ In this lab you will set up the Raspberry Pi and prepare the environment you are
 
 This course will focus on the chip to the right of the Raspberry Pi logo. It is a System on a Chip (SOC) by Broadcom that contains a  32-bit ARM processor clocked at 700MHz and a Videocore IV Graphics Processing Unit. The chip itself is called Broadcom BCM2835.
 
-###### ARM and Instruction Sets
+##### ARM and Instruction Sets
 The Raspberry Pi uses the ARM11 microarchitecture and supports the ARMv6 instruction set. It also supports the Thumb1 and Jazelle extensions.
 
 In this course we will focus mainly on the ARMv6 Instruction Set.
 
-###### Who else uses this?
+##### Who else uses this?
 ARM is one of the most popular instruction set architectures out there. Some popular products use the same instruction set as the one you are about to learn. Examples of this are the Nintendo 3DS, the iPhone 3G, and some low-end Android phones. The newer instruction set architectures such as ARMv7 and ARMv8 are backwards compatible so most of what you will be learning will still be applicable to newer microarchitectures.
 
-###### Objectives
+##### Objectives
 * To get familiar with the Raspberry Pi
 * To get familiar with a UNIX-like environment
 * To understand the role of the Assembler and Linker
@@ -146,7 +146,7 @@ MOV R7, #1         @ Moves the constant 1 to the Register R7
 SWI 0              @ Executes Software Interrupt determined by R7
 ```
 
-###### Transferring the source code to the Pi
+##### Transferring the source code to the Pi
 Open a new terminal session in your computer. Using the terminal navigate to the directory where your source code file is located. You can do this using the `cd` command like shown below.
 
 ```bash
@@ -170,7 +170,7 @@ ld -o lab0 lab0.o
 
 If everything went well you should now have `lab0.s`, `lab0.o`, and `lab0` in your working directory. Otherwise read the assembler errors, fix them, and retry the steps above.
 
-###### Running the executable
+##### Running the executable
 
 To run your program just type:
 
@@ -209,14 +209,14 @@ We will cover the `Current Program Status Register` in the next lab.
 
 Now that you are more familiar with ARM you are able to write simple programs on your own. This week you will have two programs to write.
 
-###### Program #1: lab0a.s
+##### Program #1: lab0a.s
 You will be writing a program that is able to calculate the following:
 
 > Result = A + (B * C) - D
 
 Place the result as the return value so you can print it afterwards in the command prompt. Save this program as `lab0a.s`.
 
-###### Program #2: lab0b.s
+##### Program #2: lab0b.s
 Your task in this second program is to reduce the number of instructions in Program #1 by using the `MLA` instruction. Place the result as the return value so you can print it afterwards in the command prompt. Save this program as `lab0b.s`.
 
 ----
