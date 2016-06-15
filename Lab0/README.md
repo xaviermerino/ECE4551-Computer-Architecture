@@ -160,7 +160,7 @@ scp ./lab0.s pi@<assignedHostname.local>:/home/pi
 
 You will be prompted for the password. After that your file should start transferring. Once it is done you can close that terminal session but make sure that the terminal with the `ssh` session is active.
 
-###### Producing an executable
+##### Producing an executable
 Now we must convert the source file into an executable file. Assuming that you named your file `lab0.s` we must enter the following in the command prompt. These commands will assemble and link your program producing an executable you can run.
 
 ```bash
