@@ -243,7 +243,7 @@ Let's take a look at the new example below:
 _start:               @ This is the label for the start section
   MOV R0, #1
   BL _doSomething     @ Branches and Links to _doSomething
-  ADDEQ R0, R0, #1    @ Performs R0 = R0 + 3 if Zero flag is set.
+  ADDEQ R0, R0, #3    @ Performs R0 = R0 + 3 if Zero flag is set.
   BAL _exit           @ Branches always to _exit
 
 _doSomething:         @ This is the label for the code that follows
