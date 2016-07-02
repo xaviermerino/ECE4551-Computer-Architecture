@@ -384,13 +384,13 @@ The following review questions must be answered in your lab report. It is expect
 
 1. Briefly explain how an ARM instruction is made up.
 
-3. Briefly explain what the barrel shifter, the limitation of immediate values, and how the barrel shifter helps overcome the limitations of immediate values.
+3. Briefly explain what the barrel shifter is, the limitation of immediate values, and how the barrel shifter helps overcome the limitations of immediate values.
 
 2. Briefly explain the difference between `Pre-Indexed Addressing` and `Post-Indexed Addressing`.
 
 5. Briefly explain how to access individual memory bytes.
 
-6. Briefly explain what is a stack, its operations, and what could it be used for.
+6. Briefly explain what is a stack, its operations, and what it could be used for.
 
 5. Briefly explain the four types of stacks mentioned above.
 
