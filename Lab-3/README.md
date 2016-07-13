@@ -479,3 +479,155 @@ MOV R1, R1, LSL #16    @ Move these bits to occupy bits 21-20 and 18-16
 ORR R0, R0, R1         @ R0 = R0 OR R1
 VMSR FPSCR, R0         @ Setting FPSCR to the value of R0
 ```
+
+The following example makes use of the LEN and STRIDE bits to perform a vector add of single precision values.
+
+Register Set 1 | Value | Register Set 2 | Value | Result Register | Value |
+---------------|-------|----------------|-------|-----------------|-------|
+**S8**         | 1.00  | **S16**        | 0.25  | **S24**         | 1.25
+**S10**        | 2.00  | **S18**        | 0.50  | **S26**         | 2.50
+**S12**        | 3.00  | **S20**        | 0.75  | **S28**         | 3.75
+**S14**        | 4.00  | **S22**        | 1.00  | **S30**         | 5.00
+
+The code is presented below.
+
+```gas
+@ File: vectoradd.s
+
+	.global	main
+	.func main
+
+main:
+	PUSH {R0, LR}
+
+	@ Getting the addresses of the numbers in the ARM registers
+	LDR R2, =number1
+	LDR R3, =number2
+	LDR R4, =number3
+	LDR R5, =number4
+	LDR R6, =number5
+	LDR R7, =number6
+	LDR R8, =number7
+	LDR R9, =number8
+
+	@ Loading the first batch of numbers into the VFP registers
+	VLDR S8, [R2]
+	VLDR S10, [R3]
+	VLDR S12, [R4]
+	VLDR S14, [R5]
+
+	@ Loading the second batch of numbers into the VFP registers.
+	VLDR S16, [R6]
+	VLDR S18, [R7]
+	VLDR S20, [R8]
+	VLDR S22, [R9]
+
+	@ Settings the LEN and STRIDE in the FPSCR
+	VMRS R0, FPSCR
+	MOV R1,  #0b110011
+	MOV R1, R1, LSL #16
+	ORR R0, R0, R1
+	VMSR FPSCR, R0
+
+	@ Performing the vector add
+	VADD.F32 S24, S8, S16
+
+	@ Converting all the results to double for printf
+	VCVT.F64.F32 D0, S24
+	VCVT.F64.F32 D1, S26
+	VCVT.F64.F32 D2, S28
+	VCVT.F64.F32 D3, S30
+
+	@ Make space in the stack for 3 double precision values
+	SUB SP, SP, #24
+
+	LDR R0, =result		@ Load the result string
+	VMOV R2, R3, D0		@ Move the first result to the registers
+
+	@ Move the remaining results to the stack
+	VSTR D1, [SP]
+	VSTR D2, [SP, #8]
+	VSTR D3, [SP, #16]
+
+	@ Call printf
+	BL	printf
+
+	@ Balance the stack
+	ADD SP, SP, #24
+
+	@ Pop the stack
+	POP {R0, PC}
+
+	.data
+number1:	.float 1.00
+number2:	.float 2.00
+number3:	.float 3.00
+number4:  .float 4.00
+number5:	.float 0.25
+number6:	.float 0.50
+number7:  .float 0.75
+number8:	.float 1.00
+
+result:	.asciz "Results:\n\t%f\n\t%f\n\t%f\n\t%f\n"
+
+```
+
+---
+
+#### On your own
+
+Now that you are more familiar with ARM you are able to write simple programs on your own. This week you will have two programs to write. Make sure to include plenty of proper comments.
+
+##### Program #1: lab3a.s
+You will be implementing a calculator. Use functions to define the add, subtract, and multiply functions. You will show the following menu to the user. Your program will only take integers.
+
+```
+Calculator
+  1) Add
+  2) Subtract
+  3) Multiply
+  4) Exit
+
+Choose your option:
+```
+
+An screenshot is provided as an example of what is required.
+
+![calculator](https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Lab-3/outputCalculator.png?raw=true)
+
+Save this program as **lab3a.s**.
+
+##### Program #2: lab3b.s
+Rewrite the calculator program (keep the lab3a.s file!) to take floating point numbers as input. Add the ability to divide. Use functions to define the add, subtract, multiply, and divide functions. Follow the same format used for **lab3a.s**.
+
+```
+Floating Point Calculator
+  1) Add
+  2) Subtract
+  3) Multiply
+  4) Divide
+  5) Exit
+
+Choose your option:
+```
+
+Save this program as **lab3b.s**.
+
+----
+
+#### Review Questions
+The following review questions must be answered in your lab report. It is expected that you go further than what was explained in this manual to answer the questions. Make sure you pay special attention to questions regarding the ARM instruction set since future lab material will assume you know what was taught in this manual.
+
+1. Briefly explain the role of the **ABI** and the **AAPCS**.
+
+2. How do you set up your program to make use of **printf**?
+
+3. How do you set up your program to make use of **scanf**?
+
+4. What happens if you need more than three arguments?
+
+5. Explain how the stack works to keep track of the function calls.
+
+6. How does the use of conditional execution differ between VFP and the ARM ISA.
+
+7. Explain how LEN and STRIDE work for vector operations.
