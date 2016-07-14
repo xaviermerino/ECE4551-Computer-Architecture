@@ -586,7 +586,7 @@ Calculator
   1) Add
   2) Subtract
   3) Multiply
-  4) Exit
+  0) Exit
 
 Choose your option:
 ```
@@ -606,7 +606,7 @@ Floating Point Calculator
   2) Subtract
   3) Multiply
   4) Divide
-  5) Exit
+  0) Exit
 
 Choose your option:
 ```
