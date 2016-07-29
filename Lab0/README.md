@@ -25,7 +25,7 @@ In this lab you will set up the Raspberry Pi and prepare the environment you are
 This course will focus on the chip below the Raspberry Pi logo. It is a System on a Chip (SOC) by Broadcom that contains a  64-bit ARM processor clocked at 1.2Ghz and a Videocore IV Graphics Processing Unit. The chip itself is called Broadcom BCM2837.
 
 ##### ARM and Instruction Sets
-The original Raspberry Pi used the ARM11 microarchitecture and supports the ARMv6 instruction set which also supports the Thumb1 and Jazelle extensions. The Raspberry Pi 3 uses the Cortex A53 microarchitecture and supports the ARMv8-A instruction set.
+The original Raspberry Pi used the ARM11 **microarchitecture** and supports the ARMv6 **instruction set** which also supports the Thumb1 and Jazelle extensions. The Raspberry Pi 3 uses the Cortex A53 microarchitecture and supports the ARMv8-A instruction set.
 
 In this course we will focus mainly on the ARMv6 Instruction Set.
 
@@ -43,44 +43,44 @@ ARM is one of the most popular instruction set architectures out there. Some pop
 #### Preparing your computer
 I am assuming you will be working with the computers provided in the lab. You are free to use your own laptop as long as you set it up properly to work with the Raspberry Pi. There are some steps we must follow to get it working.
 
-1. Go to this [link](https://support.apple.com/kb/DL999?viewlocale=en_US&locale=en_US) and download `Bonjour Print Services for Windows v2.0.2`
-2. Install Bonjour
-3. Go to this [link](https://cygwin.com/install.html) and download the 64-bit version of `Cygwin`. Read the installation notes provided in the website.
-4. Install Cygwin. During the installation process you can search for packages to be installed. Search for `openssh`. Mark it for installation and proceed.
-5. Once its done, open `Cygwin Terminal`
+1. Go to this [link](https://support.apple.com/kb/DL999?viewlocale=en_US&locale=en_US) and download **Bonjour Print Services for Windows v2.0.2**
+2. Install **Bonjour**
+3. Go to this [link](https://cygwin.com/install.html) and download the 64-bit version of **Cygwin**. Read the installation notes provided in the website.
+4. Install **Cygwin**. During the installation process you can search for packages to be installed. Search for **openssh**. Mark it for installation and proceed.
+5. Once its done, open **Cygwin Terminal**.
 
 #### Preparing the Pi
-Your Raspberry Pi should be ready to boot into `Raspbian`. It should have an SD card and be connected to the network through an Ethernet cable. Plug the power cord into the Pi and some LEDs will flash. Give it some time to boot (around a minute) and it will be ready for you.
+Your Raspberry Pi should be ready to boot into **Raspbian**. It should have an SD card and be connected to the network through an Ethernet cable. Plug the power cord into the Pi and some LEDs will flash. Give it some time to boot (around a minute) and it will be ready for you.
 
-Next we are going to set up a proper `hostname` for the Pi. The Raspbian operating system comes bundled with `Bonjour` or `zeroconf`. This allows us to refer to the Pi by its hostname and not an IP. Essentially, the Pi will have a name on the network and you won't need to remember its local IP.
+Next we are going to set up a proper **hostname** for the Pi. The Raspbian operating system comes bundled with **Bonjour** or **zeroconf**. This allows us to refer to the Pi by its hostname and not an IP. Essentially, the Pi will have a name on the network and you won't need to remember its local IP.
 
-Since we need to access the Pi and the hostname hasn't been set, the instructor will provide you with your Pi's local IP. On your computer, open the `Terminal`. Type the commands shown below:
+Since we need to access the Pi and the hostname hasn't been set, the instructor will provide you with your Pi's local IP. On your computer, open the **Terminal**. Type the commands shown below:
 
 ```bash
 ssh pi@<localip>
 ```
 
-If the Pi is not ready or you mistyped the IP address an error will occur and `ssh` will let you know. Otherwise ssh should ask you for a password. The default password is `raspberry`. If you haven't connected to this device before you will be told that the authenticity can't be established and an `RSA fingerprint` will appear on the screen. You will be asked if you want to continue with the connection. Say yes. You should now be logged in to the Pi.
+If the Pi is not ready or you mistyped the IP address an error will occur and **ssh** will let you know. Otherwise ssh should ask you for a password. The default password is `raspberry`. If you haven't connected to this device before you will be told that the authenticity can't be established and an **RSA fingerprint** will appear on the screen. You will be asked if you want to continue with the connection. Say yes. You should now be logged in to the Pi.
 
 We will now verify the current working directory by typing the command shown below. The output should be `/home/pi`.
 
 ```bash
 pwd
 ```
-We will now download the configuration script. The script will be downloaded to the working directory using `wget`, a utility for downloading network data.
+We will now download the configuration script. The script will be downloaded to the working directory using **wget**, a utility for downloading network data.
 
 ```bash
 wget https://raw.githubusercontent.com/xaviermerino/ECE4551-Computer-Architecture/master/Lab0/hostnameScript.sh
 ```
 
-We must ensure that the `bash` script that you just downloaded is executable by altering the executable flag with `chmod`. We will then proceed to run the script with the hostname assigned to you.
+We must ensure that the **bash** script that you just downloaded is executable by altering the executable flag with `chmod`. We will then proceed to run the script with the hostname assigned to you.
 
 ```bash
 chmod u+x ./hostnameScript.sh
 ./hostnameScript.sh -n <assignedHostname>
 ```
 
-The script will set the new hostname and reboot the Pi. Once the Pi is done rebooting you will `ssh` into it like this (in your Cygwin Terminal):
+The script will set the new hostname and reboot the Pi. Once the Pi is done rebooting you will **ssh** into it like this (in your Cygwin Terminal):
 
 ```bash
 ssh pi@<assignedHostname>.local
@@ -122,13 +122,13 @@ AND               @ And
 ORR               @ Or
 ```
 
-There are two ways to specify comments in Assembly. If you are familiar with the `C` language you will recognize the style below.
+There are two ways to specify comments in Assembly. If you are familiar with the **C** language you will recognize the style below.
 
 ```assembly
 /* This is a comment */
 ```
 
-You can also comment using the `@` character. We will be using this method. 
+You can also comment using the **@** character. We will be using this method.
 
 ```assembly
 MOV R0, #1         @ Moves the constant 1 to the Register R0
@@ -136,7 +136,7 @@ MOV R0, #1         @ Moves the constant 1 to the Register R0
 ----
 
 #### Your first ARM Assembly program
-In this lab we will be making a very simple adding program. You will set two numbers and add them together. Use your favorite editor to type the source code below. Save it as `lab0.s`.
+In this lab we will be making a very simple adding program. You will set two numbers and add them together. Use your favorite editor to type the source code below. Save it as **lab0.s**.
 
 ```assembly
 @ File: lab0.s
@@ -168,17 +168,17 @@ Now we must transfer the source code to the Pi via the network. We will use `scp
 scp ./lab0.s pi@<assignedHostname.local>:/home/pi
 ```
 
-You will be prompted for the password. After that your file should start transferring. Once it is done you can close that terminal session but make sure that the terminal with the `ssh` session is active.
+You will be prompted for the password. After that your file should start transferring. Once it is done you can close that terminal session but make sure that the terminal with the **ssh** session is active.
 
 ##### Producing an executable
-Now we must convert the source file into an executable file. Assuming that you named your file `lab0.s` we must enter the following in the command prompt. These commands will assemble and link your program producing an executable you can run.
+Now we must convert the source file into an executable file. Assuming that you named your file **lab0.s** we must enter the following in the command prompt. These commands will assemble and link your program producing an executable you can run.
 
 ```bash
 as -o lab0.o lab0.s
 ld -o lab0 lab0.o
 ```
 
-If everything went well you should now have `lab0.s`, `lab0.o`, and `lab0` in your working directory. Otherwise read the assembler errors, fix them, and retry the steps above.
+If everything went well you should now have **lab0.s**, **lab0.o**, and **lab0** in your working directory. Otherwise read the assembler errors, fix them, and retry the steps above.
 
 ##### Running the executable
 
@@ -200,7 +200,7 @@ When programs exit the return value indicates if they have exited successfully. 
 
 #### More on ARM: Registers
 
-As of right now you've only executed code that was provided to you. We have mentioned `register` R0 but we haven't really explained what a register is. A register is a small amount of fast storage that is part of the processor. Operations on registers are fast since they don't involve access to external memory. ARM uses a `load-store architecture` meaning that non-load and non-store instructions (such as `ADD`) can only operate on values in the registers.
+As of right now you've only executed code that was provided to you. We have mentioned **register** R0 but we haven't really explained what a register is. A register is a small amount of fast storage that is part of the processor. Operations on registers are fast since they don't involve access to external memory. ARM uses a **load-store architecture** meaning that non-load and non-store instructions (such as `ADD`) can only operate on values in the registers.
 
 The ARM processor has 17 (32-bits) registers:
 * 13 general-purpose registers (R0 - R12)
@@ -211,7 +211,7 @@ The ARM processor has 17 (32-bits) registers:
 
 Registers R0 to R12 are safe to play with. Registers R13 to R15 have predefined uses. You can use these registers if you want, however, bear in mind that unless you know what you are doing odd things might happen.
 
-We will cover the `Current Program Status Register` in the next lab.
+We will cover the **Current Program Status Register** in the next lab.
 
 ----
 
@@ -224,10 +224,10 @@ You will be writing a program that is able to calculate the following:
 
 > Result = A + (B * C) - D
 
-Place the result as the return value so you can print it afterwards in the command prompt. Save this program as `lab0a.s`.
+Place the result as the return value so you can print it afterwards in the command prompt. Save this program as **lab0a.s**.
 
 ##### Program #2: lab0b.s
-Your task in this second program is to reduce the number of instructions in Program #1 by using the `MLA` instruction. Place the result as the return value so you can print it afterwards in the command prompt. Save this program as `lab0b.s`.
+Your task in this second program is to reduce the number of instructions in Program #1 by using the `MLA` instruction. Place the result as the return value so you can print it afterwards in the command prompt. Save this program as **lab0b.s**.
 
 ----
 #### Review Questions
