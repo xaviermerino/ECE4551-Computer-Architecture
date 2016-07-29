@@ -1,10 +1,11 @@
 ## Computer Architecture
-###Lab 0: Setting up - Introduction to ARM
+### Lab 0: Setting up - Introduction to ARM
 
   - [Overview](#overview)
       - [ARM and Instruction Sets](#arm-and-instruction-sets)
       - [Who else uses this?](#who-else-uses-this)
       - [Objectives](#objectives)
+  - [Preparing your computer](#preparing-your-computer)
   - [Preparing the Pi](#preparing-the-pi)
   - [Machine Code](#machine-code)
   - [Assembly Instructions](#assembly-instructions)
@@ -21,15 +22,15 @@
 #### Overview
 In this lab you will set up the Raspberry Pi and prepare the environment you are going to be using to develop for an ARM processor.
 
-This course will focus on the chip to the right of the Raspberry Pi logo. It is a System on a Chip (SOC) by Broadcom that contains a  32-bit ARM processor clocked at 700MHz and a Videocore IV Graphics Processing Unit. The chip itself is called Broadcom BCM2835.
+This course will focus on the chip below the Raspberry Pi logo. It is a System on a Chip (SOC) by Broadcom that contains a  64-bit ARM processor clocked at 1.2Ghz and a Videocore IV Graphics Processing Unit. The chip itself is called Broadcom BCM2837.
 
 ##### ARM and Instruction Sets
-The Raspberry Pi uses the ARM11 microarchitecture and supports the ARMv6 instruction set. It also supports the Thumb1 and Jazelle extensions.
+The original Raspberry Pi used the ARM11 microarchitecture and supports the ARMv6 instruction set which also supports the Thumb1 and Jazelle extensions. The Raspberry Pi 3 uses the Cortex A53 microarchitecture and supports the ARMv8-A instruction set.
 
 In this course we will focus mainly on the ARMv6 Instruction Set.
 
 ##### Who else uses this?
-ARM is one of the most popular instruction set architectures out there. Some popular products use the same instruction set as the one you are about to learn. Examples of this are the Nintendo 3DS, the iPhone 3G, and some low-end Android phones. The newer instruction set architectures such as ARMv7 and ARMv8 are backwards compatible so most of what you will be learning will still be applicable to newer microarchitectures.
+ARM is one of the most popular instruction set architectures out there. Some popular products use the same instruction set as the one you are about to learn. Examples of this are the Nintendo 3DS, the iPhone 3G, and some low-end Android phones. The newer instruction set architectures such as ARMv7 and ARMv8-A are backwards compatible so most of what you will be learning will still be applicable to newer microarchitectures.
 
 ##### Objectives
 * To get familiar with the Raspberry Pi
@@ -38,6 +39,15 @@ ARM is one of the most popular instruction set architectures out there. Some pop
 * Write your first program in ARMv6 Assembly
 
 ---
+
+#### Preparing your computer
+I am assuming you will be working with the computers provided in the lab. You are free to use your own laptop as long as you set it up properly to work with the Raspberry Pi. There are some steps we must follow to get it working.
+
+1. Go to this [link](https://support.apple.com/kb/DL999?viewlocale=en_US&locale=en_US) and download `Bonjour Print Services for Windows v2.0.2`
+2. Install Bonjour
+3. Go to this [link](https://cygwin.com/install.html) and download the 64-bit version of `Cygwin`. Read the installation notes provided in the website.
+4. Install Cygwin. During the installation process you can search for packages to be installed. Search for `openssh`. Mark it for installation and proceed.
+5. Once its done, open `Cygwin Terminal`
 
 #### Preparing the Pi
 Your Raspberry Pi should be ready to boot into `Raspbian`. It should have an SD card and be connected to the network through an Ethernet cable. Plug the power cord into the Pi and some LEDs will flash. Give it some time to boot (around a minute) and it will be ready for you.
@@ -67,10 +77,10 @@ We must ensure that the `bash` script that you just downloaded is executable by 
 
 ```bash
 chmod u+x ./hostnameScript.sh
-sudo ./hostnameScript.sh -n <assignedHostname>
+./hostnameScript.sh -n <assignedHostname>
 ```
 
-The script will set the new hostname and reboot the Pi. Once the Pi is done rebooting you will `ssh` into it like this:
+The script will set the new hostname and reboot the Pi. Once the Pi is done rebooting you will `ssh` into it like this (in your Cygwin Terminal):
 
 ```bash
 ssh pi@<assignedHostname>.local
@@ -98,7 +108,7 @@ Assembly language allows you to write machine code programs using mnemonics. You
 ----
 
 #### Assembly Instructions
-The ARM processor in your Raspberry Pi takes a specific set of machine code instructions. The Raspberry Pi model B makes use of the ARMv6 instruction set. You cannot take a program written for an ARMv6 compliant microarchitecture (such as the ARM11 in your Pi) and run it in a x86-64 one. You will need to learn another instruction set to port your code.
+The ARM processor in your Raspberry Pi takes a specific set of machine code instructions. The Raspberry Pi model B makes use of the ARMv6 instruction set. You cannot take a program written for an ARMv6 compliant microarchitecture (such as the ARM11 in the original Pi) and run it in a totally different one (for instance x86-64). You will need to learn another instruction set to port your code.
 
 As mentioned before, we will focus on the ARMv6 instruction set. A processor is able to move and process data and as such you can expect the instruction set to provide support for these operations.
 
@@ -118,7 +128,7 @@ There are two ways to specify comments in Assembly. If you are familiar with the
 /* This is a comment */
 ```
 
-You can also comment using the `@` character.
+You can also comment using the `@` character. We will be using this method. 
 
 ```assembly
 MOV R0, #1         @ Moves the constant 1 to the Register R0
@@ -207,7 +217,7 @@ We will cover the `Current Program Status Register` in the next lab.
 
 #### On your own
 
-Now that you are more familiar with ARM you are able to write simple programs on your own. This week you will have two programs to write.
+Now that you are more familiar with ARM you are able to write simple programs on your own. This week you will have two programs to write. Make sure to include plenty of proper comments.
 
 ##### Program #1: lab0a.s
 You will be writing a program that is able to calculate the following:
