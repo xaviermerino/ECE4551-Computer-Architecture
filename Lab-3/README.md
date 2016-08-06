@@ -1,6 +1,29 @@
 ## Computer Architecture
 ### Lab 3: Functions and Floating Point Instructions
 
+  - [Overview](#overview)
+    - [Objectives](#objectives)
+  - [Preparing the Pi](#preparing-the-pi)
+  - [Introducing libc](#introducing-libc)
+    - [Using printf](#using-printf)
+    - [The AAPCS](#the-aapcs)
+    - [Using scanf](#using-scanf)
+    - [Extra arguments](#extra-arguments)
+    - [A word of caution](#a-word-of-caution)
+  - [More on ARM: VFP Extensions](#more-on-arm-vfp-extensions)
+    - [VFP Registers](#vfp-registers)
+    - [From VFP to ARM and vice versa](#from-vfp-to-arm-and-vice-versa)
+    - [Load and Store](#load-and-store)
+    - [Changing Precisions](#changing-precisions)
+    - [Arithmetic Instructions](#arithmetic-instructions)
+    - [VFP Conditional Execution](#vfp-conditional-execution)
+    - [Vector Operations](#vector-operations)
+    - [Setting up LEN and STRIDE](#setting-up-len-and-stride)
+  - [On your own](#on-your-own)
+    - [Program #1: lab3a.s](#program-1-lab3as)
+    - [Program #2: lab3b.s](#program-2-lab3bs)
+  - [Review Questions](#review-questions)
+
 #### Overview
 We have learned quite a bit on how memory works and how to use the stack to store values. The stack is useful but it is also fragile, handle it wrong and your whole program can crash (or if you are lucky it might just not run properly). You probably already know that the stack can be used to keep track of function calls. Today, we are going to use it for that purpose. We are going to learn how to call and write functions using the function standards defined in the **Application Binary Interface (ABI)**. We are going to focus, particularly, on the **AAPCS (Procedure Call Standard for the ARM Architecture)**. We will use some functions included in the C standard function library to get input and provide output. We will also talk about the **VFP extensions** that will (finally!) let us use floating point numbers in our programs.
 
