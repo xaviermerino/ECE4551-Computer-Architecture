@@ -24,6 +24,8 @@ In this lab you will set up the Raspberry Pi and prepare the environment you are
 
 This course will focus on the chip below the Raspberry Pi logo. It is a System on a Chip (SOC) by Broadcom that contains a  64-bit ARM processor clocked at 1.2Ghz and a Videocore IV Graphics Processing Unit. The chip itself is called Broadcom BCM2837.
 
+![pi](http://www.spotpear.com/picture/raspberry-pi/raspberry-pi-kit/raspberry-pi-3-model/raspberry-pi-3-model-B-04.jpg)
+
 ##### ARM and Instruction Sets
 The original Raspberry Pi used the ARM11 **microarchitecture** and supports the ARMv6 **instruction set** which also supports the Thumb1 and Jazelle extensions. The Raspberry Pi 3 uses the Cortex A53 microarchitecture and supports the ARMv8-A instruction set.
 
@@ -70,7 +72,7 @@ pwd
 We will now download the configuration script. The script will be downloaded to the working directory using **wget**, a utility for downloading network data.
 
 ```bash
-wget https://raw.githubusercontent.com/xaviermerino/ECE4551-Computer-Architecture/master/Lab-0/hostnameScript.sh
+wget https://raw.githubusercontent.com/xaviermerino/ECE4551-Computer-Architecture/master/Lab0/hostnameScript.sh
 ```
 
 We must ensure that the **bash** script that you just downloaded is executable by altering the executable flag with `chmod`. We will then proceed to run the script with the hostname assigned to you.
