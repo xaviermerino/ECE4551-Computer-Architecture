@@ -30,11 +30,11 @@
     - [Program #2: lab4b.s](#program-2-lab4bs)
     - [Program #3: lab4c.s](#program-3-lab4cs)
   - [Review Questions](#review-questions)
-    
+
 #### Overview
 We are finally ready to put to use all of the knowledge we have acquired in the past weeks. This week we will be covering the use of the **GPIO** (General Purpose Input/Output) pins in the Raspberry Pi. This will allow you to connect external components such as LEDs, switches, sensors, and even communicate with other devices. Even though you will be using a Raspberry Pi 3, the pins will look like the ones presented below.
 
-![Pins](https://www.raspberrypi.org/documentation/usage/gpio-plus-and-raspi2/images/gpio-pins-pi2.jpg)
+![Pins](https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Lab-4/pinspi.jpg?raw=true)
 
 We are going to focus on the registers that control the behavior of the GPIO, how to set a specific pin as **input** or **output**, and how to **set** or **clear** that pin. We will be creating two applications in this lab. The first one will be a **Python** application that uses the `RPi.GPIO` library to interface with the pins. This Python application will be used to test your wiring / connections. Once your Python application runs as expected we will be writing code that produces the same output in ARM Assembly.
 
