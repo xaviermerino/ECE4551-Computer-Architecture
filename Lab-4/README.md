@@ -274,7 +274,7 @@ void * mmap (void *address, size_t length, int protect, int flags, int filedes, 
 [For more information visit the GNU manual.](http://www.gnu.org/software/libc/manual/html_node/Memory_002dmapped-I_002fO.html)
 
 ##### The Real Thing
-So now we are ready to start coding in Assembly. Inspect the code and see how each section has been separated by labels in order to achieve the same results we had in Python.
+So now we are ready to start coding in Assembly. Inspect the code and see how each section has been separated by labels in order to achieve the same results we had in Python. If you run the example make sure to do it as a super user.
 
 ```gas
 @ File: pin17on.s
