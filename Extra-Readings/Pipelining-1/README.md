@@ -9,6 +9,7 @@ Let’s translate this analogy to processors. We have been talking about ARM pro
 
 ![cpu](https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Extra-Readings/Pipelining-1/pipe1.png?raw=true)
 
+
 ##### Using pipelining techniques 
 
 
