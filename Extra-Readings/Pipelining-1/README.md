@@ -160,27 +160,80 @@ Let's consider the following assembly program.
 ```gas
 section1:
   MUL R1, R2, R3
-  SUB R4, R1, R5
+  SUB R4, R6, R7
   ADD R1, R6, R7
   ...
 
 ```
 
-Let's assume that before the instructions execute we have `R1 = 9`, `R2 = 2`, `R3 = 3`, `R6 = 5`, and `R7 = 5`. If you run the program in your head you will probably tell me that after the third instruction finished `R1 = 10`. That is because when you executed this program you assumed that the first instruction `MUL` finished first (updating to `R1 = 6`) and then the third instruction `ADD` finished last (making `R1 = 10`). But the processor might take more time (in clock cycles) to perform a `MUL` instruction than an `ADD` instruction and in that case we have to ensure that the flow of the program is correct and this means that after the third instruction, `R1 = 10`. This dependency is called **Write-After-Write** because we have to preserve the writing order of the program to get a correct output. 
+Let's assume that before the instructions execute we have `R1 = 9`, `R2 = 2`, `R3 = 3`, `R6 = 5`, and `R7 = 5`. If you run the program in your head you will probably tell me that after the third instruction finished `R1 = 10`. That is because when you executed this program you assumed that the first instruction `MUL` finished first (updating to `R1 = 6`) and then the third instruction `ADD` finished last (making `R1 = 10`). But the processor might take more time (in clock cycles) to perform a `MUL` instruction than an `ADD` instruction and in that case we have to ensure that the flow of the program is correct and this means that after the third instruction, `R1 = 10`. This dependency is called **Write-After-Write** because we have to preserve the writing order of the program to get a correct output.
 
 ###### WAR Dependencies
 Let's consider the following assembly program.
 
 ```gas
 section1:
-  MUL R1, R2, R3
   SUB R4, R1, R5
   ADD R1, R6, R7
   ...
 
 ```
 
-Let's assume that before the instructions execute we have `R1 = 9`, `R2 = 2`, `R3 = 3`, `R5 = 5`, `R6 = 6` and `R7 = 5`. If you run the program in your head you will probably tell me that after the third instruction finished `R1 = 13`. That is because when you executed this program the first instruction `MUL` updated `R1 = 6`. And in your execution, the `SUB` instruction read that `R1 = 6` and `R5 = 5` so it produced `R4 = 1`. Lastly, the third instruction `ADD` made `R1 = 13`. You executed this correctly. But what if the `ADD` instruction takes less clock cycles to be executed? In that case the `SUB` instruction would have read `R1 = 13` instead of `R1 = 6`. We need to ensure that the `SUB` instruction has finished reading `R1` before the `ADD` instruction can write to it. This is why this type of dependency is labeled **Write-After-Read**. 
+Let's assume that before the instructions execute we have `R1 = 9`, `R5 = 5`, `R6 = 6` and `R7 = 5`. If you run the program in your head you will probably tell me that after the second instruction finished `R1 = 11`. That is because when you executed this program the `SUB` instruction read that `R1 = 9` and `R5 = 5`. Lastly, the second instruction `ADD` made `R1 = 11`. You executed this correctly. But what if the `ADD` instruction takes less clock cycles to be executed? In that case the `SUB` instruction would have read `R1 = 11` instead of `R1 = 9`. We need to ensure that the `SUB` instruction has finished reading `R1` before the `ADD` instruction can write to it. This is why this type of dependency is labeled **Write-After-Read**.
+
+#### Hazards
+So far we have seen that the way we write our programs can introduce data or control dependencies. In other words, dependencies are properties of our programs. Not all dependencies can cause problems. You might be wondering why I didn't show you a pipeline table for the **WAW** and **WAR** dependencies. And that's because these dependencies do not cause problems, or hazards, in our five-stage pipeline. Let me show you.
+
+##### Not a Hazard: WAW Dependency
+Like before let's consider the following assembly program.
+
+```gas
+section1:
+  MUL R1, R2, R3
+  SUB R4, R6, R7
+  ADD R1, R6, R7
+  ...
+
+```
+
+Let's assume that before the instructions execute we have `R1 = 9`, `R2 = 2`, `R3 = 3`, `R6 = 5`, and `R7 = 5`. If you run the program in your head you will probably tell me that after the third instruction finished `R1 = 10`. And that is the correct answer. Let's see the pipeline diagram for this set of instructions.
+
+CC | Fetch       | Decode      | Execute    | Memory     | Write Back
+------------|-------------|-------------|------------|------------|--------------
+1           | MUL | Empty       | Empty      | Empty      | Empty
+2           | SUB | MUL | Empty      | Empty      | Empty
+3           | ADD  | SUB | MUL      | Empty      | Empty
+4           | ... | ADD | SUB      | MUL      | Empty
+5           | ... | ... | ADD      | SUB     | **MUL**
+6           | ... | ... | ...      | ADD     | SUB
+7           | ... | ... | ... | ... | **ADD**
+
+The reason we had a **WAW** dependency is because, from the program itself, we couldn't guarantee that the order of the writes was going to be preserved. This five-stage pipeline guarantees that the writes happen in order like shown in the diagram above. Therefore, the **WAW** dependencies do not turn into hazards in this processor.
+
+##### Not a Hazard: WAR Dependency
+Like before let's consider the following assembly program.
+
+```gas
+section1:
+  SUB R4, R1, R5
+  ADD R1, R6, R7
+  ...
+
+```
+
+Let's assume that before the instructions execute we have `R1 = 9`, `R5 = 5`, `R6 = 6` and `R7 = 5`. If you run the program in your head you will probably tell me that after the second instruction finished `R1 = 11`. And that is the correct answer. Let's see the pipeline diagram for this set of instructions.
+
+CC | Fetch       | Decode      | Execute    | Memory     | Write Back
+------------|-------------|-------------|------------|------------|--------------
+1           | SUB | Empty       | Empty      | Empty      | Empty
+2           | ADD | **SUB** | Empty      | Empty      | Empty
+4           | ... | ADD | SUB      | Empty      | Empty
+5           | ... | ... | ADD      | SUB     | Empty
+6           | ... | ... | ...      | ADD     | SUB
+7           | ... | ... | ... | ... | **ADD**
+
+The reason we had a **WAR** dependency is because, from the program itself, we couldn't guarantee that the the `ADD` instruction was going to write the to register `R1` after `SUB` read from it. This five-stage pipeline guarantees that the required order is kept. Therefore, the **WAR** dependencies do not turn into hazards in this processor.
+
 
 ##### Structural Hazards
 As mentioned before, pipelining is made possible because different functional units take care of different portions of an instruction. Structural hazards are a hardware problem. It basically means the hardware can't support the overlapped execution of all those instructions simultaneously because it doesn't have the resources to do it. Some manufacturers might choose to drop a specialized functional unit in order to have a more competitive price and in doing so they introduce a structural hazard. In order to solve it, the pipeline stalls and speed is sacrificed but the hazard will get resolved in the end.
