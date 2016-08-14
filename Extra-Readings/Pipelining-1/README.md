@@ -37,7 +37,7 @@ Each instruction still takes 90 ns to go through all of the steps but the throug
 
 ### Pipeline Issues
 
-Ideally, with pipelining, we want to the cycles per instruction (CPI) to be one. Initially, of course, we can’t, since the pipeline has to get filled first.  But after the pipeline is full we should have a CPI of 1 (or finish one instruction every cycle). Shouldn’t we? Well not really. Sometimes we have trouble in the pipeline and it stalls.
+Ideally, with pipelining, we want the cycles per instruction (CPI) to be one. Initially, of course, we can’t, since the pipeline has to get filled first.  But after the pipeline is full we should have a CPI of 1 (or finish one instruction every cycle). Shouldn’t we? Well not really. Sometimes we have trouble in the pipeline and it stalls.
 
 Let’s consider an assembly line as an example. Let’s pretend we are making a happy face pillow. I present you with the finished product right below.
 
@@ -108,7 +108,7 @@ CC | Fetch       | Decode      | Execute    | Memory     | Write Back
 6           | ADDS | **Empty**  | **Empty** | BNE | SUBS
 7           | SUBS | ADDS  | **Empty** | **Empty** | BNE
 
-The pipeline flushes and not being able to predict if the branch will be taken or not will increase the CPI. The key, therefore, lies in reducing branch instructions as much as possible and increasing the odds of predicting whether a branch is taken or not. As you would expect, this is called **branch prediction** and helps avoid pipeline flushes. Remember that our simple processor pipeline has five-stages, other processors such as the Intel Pentium 4 use very deep pipelines with more than 80 stages. In that case, the penalty for a wrong prediction increases tremendously.
+The pipeline flushes and not being able to predict if the branch will be taken or not will increase the CPI. The key, therefore, lies in reducing branch instructions as much as possible and increasing the odds of predicting whether a branch is taken or not. As you would expect, this is called **branch prediction** and helps avoid pipeline flushes. Remember that our simple processor pipeline has five-stages, other processors, such as the Intel Pentium 4, have 20 stages. In that case, the penalty for a wrong prediction increases tremendously.
 
 ##### Data Dependencies
 There are more cases in which a pipeline can stall. In this section we will look at how data can cause this.
@@ -152,7 +152,7 @@ CC | Fetch       | Decode      | Execute    | Memory     | Write Back
 5           | **SUBS** | Empty | Empty      | Empty     | ADDS
 6           | ... |  **SUBS** | Empty      | Empty     | Empty
 
-This doesn't look very good though. Which is why we have an alternate method called **register forwarding**. We will be covering that later on.
+This doesn't look very good though. Which is why we have an alternate method called **forwarding**. We will be covering that later on.
 
 ###### WAW Dependencies
 Let's consider the following assembly program.
@@ -210,7 +210,7 @@ CC | Fetch       | Decode      | Execute    | Memory     | Write Back
 
 The reason we had a **WAW** dependency is because, from the program itself, we couldn't guarantee that the order of the writes was going to be preserved. This five-stage pipeline guarantees that the writes happen in order like shown in the diagram above. Therefore, the **WAW** dependencies do not turn into hazards in this processor.
 
-##### Not a Hazard: WAR Dependency
+##### Not a Hazard: WAR Dependencies
 Like before let's consider the following assembly program.
 
 ```gas
@@ -234,8 +234,42 @@ CC | Fetch       | Decode      | Execute    | Memory     | Write Back
 
 The reason we had a **WAR** dependency is because, from the program itself, we couldn't guarantee that the the `ADD` instruction was going to write the to register `R1` after `SUB` read from it. This five-stage pipeline guarantees that the required order is kept. Therefore, the **WAR** dependencies do not turn into hazards in this processor.
 
+##### Data Hazards: RAW Dependencies
+We already covered **RAW** dependencies. We didn't introduce the term hazard but we showed you how to solve it. Go read that section again in the light of hazards and you will realize that **stalls** are a way of solving them. We also mentioned **forwarding** but didn't explain it at the time. We will be explaining now.
+
+Like before let's consider the following assembly program.
+
+```gas
+section1:
+  ADDS R1, R2, R3
+  SUBS R4, R1, R5
+  ...
+
+```
+
+The first time we tried to put these instructions in a pipeline we wished we could've done something like this:
+
+CC | Fetch       | Decode      | Execute    | Memory     | Write Back
+------------|-------------|-------------|------------|------------|--------------
+1           | ADDS | Empty       | Empty      | Empty      | Empty
+2           | **SUBS** | ADDS | Empty      | Empty      | Empty
+3           | ... | **SUBS** | ADDS      | Empty      | Empty
+4           | ... | ... | **SUBS**      | ADDS      | Empty
+5           | ... | ... | ...      | **SUBS**      | ADDS
+
+And we couldn't because the `ADDS` instruction had not finished writing the value into `R1` so the `SUBS` instruction was going to read a wrong value for `R1`. But the thing is that when the `ADDS` instruction finished executing in the end of cycle 3, it already has the value for the result. Its just that it has not been written back to the register yet! But if we could somehow forward this value into the `SUBS` instruction without having to put it in the registers then we wouldn't have to stall the pipeline. And that is exactly what is happening in the pipeline below.
+
+CC | Fetch       | Decode      | Execute    | Memory     | Write Back
+------------|-------------|-------------|------------|------------|--------------
+1           | ADDS | Empty       | Empty      | Empty      | Empty
+2           | SUBS | ADDS | Empty      | Empty      | Empty
+3           | ... | SUBS | **ADDS**      | Empty      | Empty
+4           | ... | ... | **SUBS**      | ADDS      | Empty
+5           | ... | ... | ...      | SUBS     | ADDS
+
+##### Control Hazards
+We already covered **control** dependencies. We didn't introduce the term hazard but we showed you how to solve it. Go read that section again in the light of hazards and you will realize that **flushes** are a way of solving them. 
 
 ##### Structural Hazards
 As mentioned before, pipelining is made possible because different functional units take care of different portions of an instruction. Structural hazards are a hardware problem. It basically means the hardware can't support the overlapped execution of all those instructions simultaneously because it doesn't have the resources to do it. Some manufacturers might choose to drop a specialized functional unit in order to have a more competitive price and in doing so they introduce a structural hazard. In order to solve it, the pipeline stalls and speed is sacrificed but the hazard will get resolved in the end.
 
-##### Data hazards
