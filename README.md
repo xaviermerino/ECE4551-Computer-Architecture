@@ -13,3 +13,4 @@ The lab portion of the course will focus on the ARMv6 Instruction Set.
 
 ### Extra Readings
 - [Introduction to Pipelining](https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Extra-Readings/Pipelining-1/README.md)
+- [Introduction to Branch Prediction](https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Extra-Readings/Branch-Prediction/README.md)
