@@ -94,7 +94,7 @@ The script will set the new hostname and reboot the Pi.
 Once the Pi is done you will **ssh** into it like this (in your Cygwin Terminal):
 
 ```bash
-ssh pi@<assignedHostname>.local
+ssh pi@<assignedHostname>
 ```
 
 If the connection was successful then your Pi is ready. Keep this connection alive as we will be using it later.
@@ -240,7 +240,7 @@ Place the result as the return value so you can print it afterwards in the comma
 #### Program #2: lab0b.s
 Your task in this second program is to reduce the number of instructions in Program #1 by using the `MLA` instruction. Place the result as the return value so you can print it afterwards in the command prompt. Save this program as **lab0b.s**.
 
-After you are done remove the files you put in the Pi using the `rm` command. If you don't know how to use it [find documentation here](http://ss64.com/bash/rm.html) or type `man rm` in your Pi's console. **Don't use the `-r` option!** 
+After you are done remove the files you put in the Pi using the `rm` command. If you don't know how to use it [find documentation here](http://ss64.com/bash/rm.html) or type `man rm` in your Pi's console. **Don't use the `-r` option!**
 
 ----
 #### Review Questions
