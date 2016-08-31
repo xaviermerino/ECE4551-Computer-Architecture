@@ -1,7 +1,7 @@
 ## Computer Architecture
 
 ### Pi Hostname Table
-The table below will help you identify your Pi. Check the label on your Pi. You can type the code in the `Remote Access` column into your **Cygwin terminal** to access your Pi. Don't forget to remove the files you placed on the Pi before you log out.
+The table below will help you identify your Pi. Check the label on your Pi. You can type the code in the `Remote Access` column into your **Cygwin terminal** to access your Pi. You will need to be in the lab's network to access the Pi. Don't forget to remove the files you placed on the Pi before you log out.
 
 * **Removing Files:** `rm`
 * **Logging out:** `exit`
