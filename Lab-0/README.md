@@ -54,9 +54,11 @@ I am assuming you will be working with the computers provided in the lab. You ar
 #### Preparing the Pi
 Your Raspberry Pi should be ready to boot into **Raspbian**. It should have an SD card and be connected to the network through an Ethernet cable. Plug the power cord into the Pi and some LEDs will flash. Give it some time to boot (around a minute) and it will be ready for you.
 
-Next we are going to set up a proper **hostname** for the Pi. The Raspbian operating system comes bundled with **Bonjour** or **zeroconf**. This allows us to refer to the Pi by its hostname and not an IP. Essentially, the Pi will have a name on the network and you won't need to remember its local IP.
+~~Next we are going to set up a proper **hostname** for the Pi. The Raspbian operating system comes bundled with **Bonjour** or **zeroconf**. This allows us to refer to the Pi by its hostname and not an IP. Essentially, the Pi will have a name on the network and you won't need to remember its local IP.~~
 
-Since we need to access the Pi and the hostname hasn't been set, the instructor will provide you with your Pi's local IP. On your computer, open the **Terminal**. Type the commands shown below:
+~~Since we need to access the Pi and the hostname hasn't been set, the instructor will provide you with your Pi's local IP. On your computer, open the **Terminal**. Type the commands shown below:~~
+
+Since we need to access the Pi and IT set the hostname for us, I'll provide you with your Pi's local IP. On your computer, open the **Terminal**. Type the commands shown below:
 
 ```bash
 ssh pi@<localip>
@@ -69,6 +71,9 @@ We will now verify the current working directory by typing the command shown bel
 ```bash
 pwd
 ```
+
+**The following was done by IT so you can ignore it:**
+
 We will now download the configuration script. The script will be downloaded to the working directory using **wget**, a utility for downloading network data.
 
 ```bash
@@ -82,7 +87,11 @@ chmod u+x ./hostnameScript.sh
 ./hostnameScript.sh -n <assignedHostname>
 ```
 
-The script will set the new hostname and reboot the Pi. Once the Pi is done rebooting you will **ssh** into it like this (in your Cygwin Terminal):
+The script will set the new hostname and reboot the Pi.
+
+**But you can't ignore this:**
+
+Once the Pi is done you will **ssh** into it like this (in your Cygwin Terminal):
 
 ```bash
 ssh pi@<assignedHostname>.local
@@ -167,7 +176,7 @@ cd /your/directory/
 Now we must transfer the source code to the Pi via the network. We will use `scp` to perform the transfer.
 
 ```bash
-scp ./lab0.s pi@<assignedHostname.local>:/home/pi
+scp ./lab0.s pi@<assignedHostname>:/home/pi
 ```
 
 You will be prompted for the password. After that your file should start transferring. Once it is done you can close that terminal session but make sure that the terminal with the **ssh** session is active.
@@ -233,7 +242,6 @@ Your task in this second program is to reduce the number of instructions in Prog
 
 ----
 #### Review Questions
-The following review questions must be answered in your lab report. It is expected that you go further than what was explained in this manual to answer the questions. Make sure you pay special attention to questions regarding the ARM instruction set since future lab material will assume you know what was taught in this manual.
 
 1. What is Raspbian?
 
