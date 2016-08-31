@@ -19,22 +19,22 @@
       - [Program #2: lab0b.s](#program-2-lab0bs)
   - [Review Questions](#review-questions)
 
-#### Overview
+### Overview
 In this lab you will set up the Raspberry Pi and prepare the environment you are going to be using to develop for an ARM processor.
 
 This course will focus on the chip below the Raspberry Pi logo. It is a System on a Chip (SOC) by Broadcom that contains a  64-bit ARM processor clocked at 1.2Ghz and a Videocore IV Graphics Processing Unit. The chip itself is called Broadcom BCM2837.
 
 ![pi](http://www.spotpear.com/picture/raspberry-pi/raspberry-pi-kit/raspberry-pi-3-model/raspberry-pi-3-model-B-04.jpg)
 
-##### ARM and Instruction Sets
+#### ARM and Instruction Sets
 The original Raspberry Pi used the ARM11 **microarchitecture** and supports the ARMv6 **instruction set** which also supports the Thumb1 and Jazelle extensions. The Raspberry Pi 3 uses the Cortex A53 microarchitecture and supports the ARMv8-A instruction set.
 
 In this course we will focus mainly on the ARMv6 Instruction Set.
 
-##### Who else uses this?
+#### Who else uses this?
 ARM is one of the most popular instruction set architectures out there. Some popular products use the same instruction set as the one you are about to learn. Examples of this are the Nintendo 3DS, the iPhone 3G, and some low-end Android phones. The newer instruction set architectures such as ARMv7 and ARMv8-A are backwards compatible so most of what you will be learning will still be applicable to newer microarchitectures.
 
-##### Objectives
+#### Objectives
 * To get familiar with the Raspberry Pi
 * To get familiar with a UNIX-like environment
 * To understand the role of the Assembler and Linker
@@ -42,7 +42,7 @@ ARM is one of the most popular instruction set architectures out there. Some pop
 
 ---
 
-#### Preparing your computer
+### Preparing your computer
 I am assuming you will be working with the computers provided in the lab. You are free to use your own laptop as long as you set it up properly to work with the Raspberry Pi. There are some steps we must follow to get it working.
 
 1. Go to this [link](https://support.apple.com/kb/DL999?viewlocale=en_US&locale=en_US) and download **Bonjour Print Services for Windows v2.0.2**
@@ -51,7 +51,7 @@ I am assuming you will be working with the computers provided in the lab. You ar
 4. Install **Cygwin**. During the installation process you can search for packages to be installed. Search for **openssh**. Mark it for installation and proceed.
 5. Once its done, open **Cygwin Terminal**.
 
-#### Preparing the Pi
+### Preparing the Pi
 Your Raspberry Pi should be ready to boot into **Raspbian**. It should have an SD card and be connected to the network through an Ethernet cable. Plug the power cord into the Pi and some LEDs will flash. Give it some time to boot (around a minute) and it will be ready for you.
 
 ~~Next we are going to set up a proper **hostname** for the Pi. The Raspbian operating system comes bundled with **Bonjour** or **zeroconf**. This allows us to refer to the Pi by its hostname and not an IP. Essentially, the Pi will have a name on the network and you won't need to remember its local IP.~~
@@ -101,7 +101,7 @@ If the connection was successful then your Pi is ready. Keep this connection ali
 
 ----
 
-#### Machine Code
+### Machine Code
 Machine code is a sequence of 0s and 1s ordered in such a way that they are meaningful to the microprocessor.
 
 A machine code program might look like this:
@@ -118,7 +118,7 @@ Assembly language allows you to write machine code programs using mnemonics. You
 
 ----
 
-#### Assembly Instructions
+### Assembly Instructions
 The ARM processor in your Raspberry Pi takes a specific set of machine code instructions. The Raspberry Pi model B makes use of the ARMv6 instruction set. You cannot take a program written for an ARMv6 compliant microarchitecture (such as the ARM11 in the original Pi) and run it in a totally different one (for instance x86-64). You will need to learn another instruction set to port your code.
 
 As mentioned before, we will focus on the ARMv6 instruction set. A processor is able to move and process data and as such you can expect the instruction set to provide support for these operations.
@@ -146,7 +146,7 @@ MOV R0, #1         @ Moves the constant 1 to the Register R0
 ```
 ----
 
-#### Your first ARM Assembly program
+### Your first ARM Assembly program
 In this lab we will be making a very simple adding program. You will set two numbers and add them together. Use your favorite editor to type the source code below. Save it as **lab0.s**.
 
 ```assembly
@@ -167,7 +167,7 @@ MOV R7, #1         @ Moves the constant 1 to the Register R7
 SWI 0              @ Executes Software Interrupt determined by R7
 ```
 
-##### Transferring the source code to the Pi
+#### Transferring the source code to the Pi
 Open a new terminal session in your computer. Using the terminal navigate to the directory where your source code file is located. You can do this using the `cd` command like shown below.
 
 ```bash
@@ -181,7 +181,7 @@ scp ./lab0.s pi@<assignedHostname>:/home/pi
 
 You will be prompted for the password. After that your file should start transferring. Once it is done you can close that terminal session but make sure that the terminal with the **ssh** session is active.
 
-##### Producing an executable
+#### Producing an executable
 Now we must convert the source file into an executable file. Assuming that you named your file **lab0.s** we must enter the following in the command prompt. These commands will assemble and link your program producing an executable you can run.
 
 ```bash
@@ -191,7 +191,7 @@ ld -o lab0 lab0.o
 
 If everything went well you should now have **lab0.s**, **lab0.o**, and **lab0** in your working directory. Otherwise read the assembler errors, fix them, and retry the steps above.
 
-##### Running the executable
+#### Running the executable
 
 To run your program just type:
 
@@ -209,7 +209,7 @@ When programs exit the return value indicates if they have exited successfully. 
 
 ----
 
-#### More on ARM: Registers
+### More on ARM: Registers
 
 As of right now you've only executed code that was provided to you. We have mentioned **register** R0 but we haven't really explained what a register is. A register is a small amount of fast storage that is part of the processor. Operations on registers are fast since they don't involve access to external memory. ARM uses a **load-store architecture** meaning that non-load and non-store instructions (such as `ADD`) can only operate on values in the registers.
 
@@ -226,18 +226,18 @@ We will cover the **Current Program Status Register** in the next lab.
 
 ----
 
-#### On your own
+### On your own
 
 Now that you are more familiar with ARM you are able to write simple programs on your own. This week you will have two programs to write. Make sure to include plenty of proper comments.
 
-##### Program #1: lab0a.s
+#### Program #1: lab0a.s
 You will be writing a program that is able to calculate the following:
 
 > Result = A + (B * C) - D
 
 Place the result as the return value so you can print it afterwards in the command prompt. Save this program as **lab0a.s**.
 
-##### Program #2: lab0b.s
+#### Program #2: lab0b.s
 Your task in this second program is to reduce the number of instructions in Program #1 by using the `MLA` instruction. Place the result as the return value so you can print it afterwards in the command prompt. Save this program as **lab0b.s**.
 
 ----
