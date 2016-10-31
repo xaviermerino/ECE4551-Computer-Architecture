@@ -89,6 +89,8 @@ GPIO.setup(17, GPIO.OUT)
 # Turns "on" pin 17 by setting it to HIGH
 GPIO.output(17, GPIO.HIGH)
 
+# sleep
+
 # Allows Python to perform GC on these resources
 GPIO.cleanup()
 ```
