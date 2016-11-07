@@ -106,7 +106,7 @@ Just remember the memory protection arguments must be compatible with the file d
 At this point you know enough about ARM, its registers, some peripherals, and memory mappings. You are now able to write some programs that make use of the system timer in the **BCM2837** chip.
 
 ##### Program #1: lab5a.s
-Your task for this lab is to implement a one-second delay and print the seconds elapsed since the program started running.
+Your task for this lab is to implement a one-second delay and print the seconds elapsed since the program started running. The program should run until `Ctrl + C` is pressed.
 
 <br>
 <img src="https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Lab-5/secondsElapsed.gif?raw=true" width="550">
