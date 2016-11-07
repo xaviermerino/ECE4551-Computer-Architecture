@@ -63,11 +63,12 @@ Just as a reminder, the `CLO` and `CHI` registers are **read-only**.
 ##### More on mmap
 
 If you are not familiar with how memory works these are some suggested readings from the **Operating Systems - Three Easy Pieces** book:
-* [The Memory API](http://pages.cs.wisc.edu/~remzi/OSTEP/vm-api.pdf)
-* [Mechanism: Address Translation](http://pages.cs.wisc.edu/~remzi/OSTEP/vm-mechanism.pdf)
-* [Segmentation](http://pages.cs.wisc.edu/~remzi/OSTEP/vm-segmentation.pdf)
-* [Free-Space Management](http://pages.cs.wisc.edu/~remzi/OSTEP/vm-freespace.pdf)
-* [Paging: Introduction](http://pages.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf)
+* [Ch 13 - The Abstraction: Address Spaces](http://pages.cs.wisc.edu/~remzi/OSTEP/vm-intro.pdf)
+* [Ch 14 - The Memory API](http://pages.cs.wisc.edu/~remzi/OSTEP/vm-api.pdf)
+* [Ch 15 - Mechanism: Address Translation](http://pages.cs.wisc.edu/~remzi/OSTEP/vm-mechanism.pdf)
+* [Ch 16 - Segmentation](http://pages.cs.wisc.edu/~remzi/OSTEP/vm-segmentation.pdf)
+* [Ch 17 - Free-Space Management](http://pages.cs.wisc.edu/~remzi/OSTEP/vm-freespace.pdf)
+* [Ch 18 - Paging: Introduction](http://pages.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf)
 
 That being said, let's take a look at the function prototype for the `mmap` function again.
 
