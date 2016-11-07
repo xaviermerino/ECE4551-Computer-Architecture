@@ -41,7 +41,7 @@ If the connection was successful then your Pi is ready. Keep this connection ali
 ---
 
 #### The System Timer
-The system timer provides a **64-bit counter** that increments at each clock pulse. It also provides four 32-bit registers that you can use to compare with the lower 32 bits of the 64-bit counter and then trigger a signal that is fed to the interrupt controller.
+The system timer provides a **64-bit counter** that increments at each clock pulse (the clock's frequency is 1 MHz). It also provides four 32-bit registers that you can use to compare with the lower 32 bits of the 64-bit counter and then trigger a signal that is fed to the interrupt controller.
 
 We are not going to be using **interrupts** to implement the program for this lab. Instead, we are going to perform the comparisons ourselves and use our knowledge of **libc** to use the `printf` function to display the number of seconds elapsed.
 
@@ -65,7 +65,7 @@ Just as a reminder, the `CLO` and `CHI` registers are **read-only**.
 Let's take a look at the function prototype for the `mmap` function again.
 
 ```c
-void *mmap(void* addr, size_t length, int prot, int flags,
+void *mmap(void addr, size_t length, int prot, int flags,
   int fd, off_t offset);
 ```
 
@@ -106,7 +106,7 @@ Just remember the memory protection arguments must be compatible with the file d
 At this point you know enough about ARM, its registers, some peripherals, and memory mappings. You are now able to write some programs that make use of the system timer in the **BCM2837** chip.
 
 ##### Program #1: lab5a.s
-Your task for this lab is to implement a one-second delay and print the seconds elapsed since the program started running. The program should run until `Ctrl + C` is pressed.
+Your task for this lab is to implement a one-second delay and print the seconds elapsed since the program started running. The program should run until `^C` is pressed or a `SIGINT` signal is passed. 
 
 <br>
 <img src="https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Lab-5/secondsElapsed.gif?raw=true" width="550">
