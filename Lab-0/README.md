@@ -24,7 +24,7 @@ In this lab you will set up the Raspberry Pi and prepare the environment you are
 
 This course will focus on the chip below the Raspberry Pi logo. It is a System on a Chip (SOC) by Broadcom that contains a  64-bit ARM processor clocked at 1.2Ghz and a Videocore IV Graphics Processing Unit. The chip itself is called Broadcom BCM2837.
 
-![pi](http://www.spotpear.com/picture/raspberry-pi/raspberry-pi-kit/raspberry-pi-3-model/raspberry-pi-3-model-B-04.jpg)
+![pi](https://www.raspberrypi.org/wp-content/uploads/2016/03/pi3.jpg)
 
 #### ARM and Instruction Sets
 The original Raspberry Pi used the ARM11 **microarchitecture** and supports the ARMv6 **instruction set** which also supports the Thumb1 and Jazelle extensions. The Raspberry Pi 3 uses the Cortex A53 microarchitecture and supports the ARMv8-A instruction set.
@@ -43,6 +43,7 @@ ARM is one of the most popular instruction set architectures out there. Some pop
 ---
 
 ### Preparing your computer
+
 I am assuming you will be working with the computers provided in the lab. You are free to use your own laptop as long as you set it up properly to work with the Raspberry Pi. There are some steps we must follow to get it working.
 
 1. Go to this [link](https://support.apple.com/kb/DL999?viewlocale=en_US&locale=en_US) and download **Bonjour Print Services for Windows v2.0.2**
@@ -102,7 +103,10 @@ If the connection was successful then your Pi is ready. Keep this connection ali
 ----
 
 ### Machine Code
-Machine code is a sequence of 0s and 1s ordered in such a way that they are meaningful to the microprocessor.
+If you don't know how a process works make sure you read this before you continue:
+* [Ch 4: The Abstraction - Process](http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf)
+
+Now that you are familiar with this, let's go into machine code. Machine code is a sequence of 0s and 1s ordered in such a way that they are meaningful to the microprocessor.
 
 A machine code program might look like this:
 
