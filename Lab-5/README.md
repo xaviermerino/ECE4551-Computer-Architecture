@@ -10,14 +10,14 @@
 - [On your own](#on-your-own)
   - [Program #1: lab5a.s](#program-1-lab5as)
 - [Review Questions](#review-questions)
-    
+
 #### Overview
 In the last lab we made use of the `open()`, `close()`, and `mmap()` functions in order to access the Pi's GPIO. In this lab we are going to make use of the Pi's System Timer. Every computer that you have used has at least one hardware timer. Timers are usually counters that increment at a fixed frequency. The system's frequency is known and thus you can translate clock cycles to time. Hardware timers are used to implement fail-safe mechanisms (watchdog timers), preemptive multitasking, and of course, to provide system time.
 
 In this lab we are going to use the system timer to implement a thread-blocking counter that will display an output like the one shown below:
 
 <br>
-![Pins](https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Lab-5/secondsElapsed.gif?raw=true)
+<img src="https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Lab-5/secondsElapsed.gif?raw=true" width="550">
 
 <br>
 The Raspberry Pi 3 that you are using has the **BCM2837** chip. There is very scarce documentation on the **BCM2387**. Luckily, most of the information on the **BCM2835** still applies. You can take a look at the [datasheet](https://cdn-shop.adafruit.com/product-files/2885/BCM2835Datasheet.pdf) for more information on system timer.
@@ -109,7 +109,7 @@ At this point you know enough about ARM, its registers, some peripherals, and me
 Your task for this lab is to implement a one-second delay and print the seconds elapsed since the program started running.
 
 <br>
-![Pins](https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Lab-5/secondsElapsed.gif?raw=true)
+<img src="https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Lab-5/secondsElapsed.gif?raw=true" width="550">
 
 <br>
 Save this program as **la5a.s**.
