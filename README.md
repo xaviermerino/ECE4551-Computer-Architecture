@@ -13,7 +13,7 @@ The lab portion of the course will focus on the ARMv6 Instruction Set.
 - [Lab 2: Handling Memory](https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Lab-2/README.md)
 - [Lab 3: Functions and Floating Point Instructions](https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Lab-3/README.md)
 - [Lab 4: Using the Pi's GPIO](https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Lab-4/README.md)
-- Lab 5: Using the Pi's System Timer
+- [Lab 5: Using the Pi's System Timer](https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Lab-5/README.md)
 
 ### Extra Readings
 - [Introduction to Pipelining](https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Extra-Readings/Pipelining-1/README.md)
