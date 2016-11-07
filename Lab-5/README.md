@@ -65,7 +65,7 @@ Just as a reminder, the `CLO` and `CHI` registers are **read-only**.
 Let's take a look at the function prototype for the `mmap` function again.
 
 ```c
-void *mmap(void addr, size_t length, int prot, int flags,
+void *mmap(void* addr, size_t length, int prot, int flags,
   int fd, off_t offset);
 ```
 
