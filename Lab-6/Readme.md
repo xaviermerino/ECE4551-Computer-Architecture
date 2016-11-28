@@ -36,6 +36,10 @@ The steps above make use of the `objdump` disassembler. We use the `-D` option t
 
 Your file should look like this:
 
+<br>
+<img src="https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Lab-6/dump.png?raw=true" width="550">
+
+<br>
 There are several columns in the listing. The first column is the address. The second column is the hexadecimal representation of the executed binary. The third column is the instruction that corresponds to that binary. The tricky part is that this column is not always correct. Some data sections might be interpreted as instructions and so those instructions might not be correct. It is up to you to differentiate.
 
 Throughout the code you will see sections annotated like this:
