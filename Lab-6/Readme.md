@@ -26,6 +26,8 @@ If the connection was successful then your Pi is ready. Keep this connection ali
 #### Disassembling an executable
 The first step toward replacing the binary in an executable is to see the binary. We are going to be using a simple disassembler bundled with your Linux distribution.
 
+The sample `a.out` is located [here](https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Lab-6/a.out?raw=true).
+
 1. Navigate to the folder containing the sample `a.out`.
 2. Run the executable by doing `./a.out`
 3. Verify that the output is **Hello World**.
