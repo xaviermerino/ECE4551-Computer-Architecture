@@ -29,10 +29,11 @@ The first step toward replacing the binary in an executable is to see the binary
 The sample `a.out` is located [here](https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Lab-6/a.out?raw=true).
 
 1. Navigate to the folder containing the sample `a.out`.
-2. Run the executable by doing `./a.out`
-3. Verify that the output is **Hello World**.
-4. Execute the following command: `objdump -D ./a.out > dump.txt`
-5. A file named **dump.txt** is located in your directory. It contains the disassembly of the executable.
+2. Make sure it is executable first by running `chmod u+x ./a.out`.
+3. Run the executable by doing `./a.out`.
+4. Verify that the output is **Hello World**.
+5. Execute the following command: `objdump -D ./a.out > dump.txt`
+6. A file named **dump.txt** is located in your directory. It contains the disassembly of the executable.
 
 The steps above make use of the `objdump` disassembler. We use the `-D` option to disassemble all sections of the executable. We later redirect this output to the file.
 
