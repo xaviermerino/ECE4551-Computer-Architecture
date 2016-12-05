@@ -82,7 +82,7 @@ Replace some binary in the executable so that it prints **IWantPie!!!** instead 
 
 3. What would be the source code of the executable given to you?
 
-4. What does `chmod` does? What are the access permissions you can set?
+4. What does `chmod` do? What are the access permissions you can set?
 
 5. Describe how the symbolic and numeric access permission formats are used.
 
