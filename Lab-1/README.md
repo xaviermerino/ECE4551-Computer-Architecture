@@ -1,5 +1,5 @@
 ## Computer Architecture
-###Lab 1: Conditional Execution
+### Lab 1: Conditional Execution
 
 - [Overview](#overview)
     - [Objectives](#objectives)
