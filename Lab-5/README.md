@@ -20,6 +20,7 @@ In this lab we are going to use the system timer to implement a thread-blocking 
 <img src="https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Lab-5/secondsElapsed.gif?raw=true" width="550">
 
 <br>
+
 The Raspberry Pi 3 that you are using has the **BCM2837** chip. There is very scarce documentation on the **BCM2387**. Luckily, most of the information on the **BCM2835** still applies. You can take a look at the [datasheet](https://cdn-shop.adafruit.com/product-files/2885/BCM2835Datasheet.pdf) for more information on system timer.
 
 ##### Objectives
@@ -80,6 +81,7 @@ void *mmap(void addr, size_t length, int prot, int flags,
 In the past lab, you were given a template on how to use the `mmap` function. You simply had to reuse what was given to change the behavior of the program. In this lab, you will need more information about the arguments of `mmap` to complete the task.
 
 <br>
+
 ![mmap](http://cinsk.github.io/articles/duma_mmap.png)
 
 <br>
