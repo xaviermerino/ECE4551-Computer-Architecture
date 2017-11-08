@@ -85,6 +85,7 @@ In the past lab, you were given a template on how to use the `mmap` function. Yo
 ![mmap](http://cinsk.github.io/articles/duma_mmap.png)
 
 <br>
+
 In the last lab, we provided a null pointer as the `addr` argument for the mmap function. This is because `addr` is an in-out parameter. An **in-out parameter** is passed to the function, the value is modified, and then is passed back out with the modified value. Since you provide `NULL` or `0`, the kernel will choose an address and provide it. When the `mmap` function returns, the virtual memory address mapped to the physical base address is returned in `R0`. You might also take for granted the fact that we chose `R2` to be 4096 bytes as the file size. The file might be smaller than this but this is feasible because mapping occurs in page-sized chunks (which are multiples of 4096 bytes).
 
 The `prot` argument describes the memory protection of the mapping. You must choose between:
@@ -122,6 +123,7 @@ Your task for this lab is to implement a one-second delay and print the seconds 
 <img src="https://github.com/xaviermerino/ECE4551-Computer-Architecture/blob/master/Lab-5/secondsElapsed.gif?raw=true" width="550">
 
 <br>
+
 Save this program as **la5a.s**.
 
 ----
