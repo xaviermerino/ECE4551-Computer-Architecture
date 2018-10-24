@@ -79,6 +79,7 @@ The program below will turn **ON** the LED attached to BCM pin 17.
 ```python
 # Imports the module RPi.GPIO and names it GPIO
 import RPi.GPIO as GPIO
+from time import sleep
 
 # Sets the Pin Numbering scheme to the ones defined by the SOC.
 GPIO.setmode(GPIO.BCM)
@@ -90,6 +91,7 @@ GPIO.setup(17, GPIO.OUT)
 GPIO.output(17, GPIO.HIGH)
 
 # sleep
+time.sleep(2)
 
 # Allows Python to perform GC on these resources
 GPIO.cleanup()
